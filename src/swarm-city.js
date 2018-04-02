@@ -92,9 +92,18 @@ class SwarmCity extends PolymerElement {
           <my-view2 name="view2"></my-view2>
           <my-view3 name="view3"></my-view3>
           <my-view404 name="view404"></my-view404>
+          
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
+    <script>
+      var ecc = eosjs_ecc
+      ecc.randomKey().then(privateWif =>  {
+        console.log(privateWif)
+        var pubkey = ecc.privateToPublic(privateWif)
+        console.log(pubkey)
+      })
+      </script>
 `;
   }
 
@@ -114,12 +123,18 @@ class SwarmCity extends PolymerElement {
 
   ready() {
     super.ready();
+
   }
 
   static get observers() {
     return [
       '_routePageChanged(routeData.page)',
     ];
+  }
+
+  _test(){
+    console.log('test');
+    alert('test2')
   }
 
   _routePageChanged(page) {

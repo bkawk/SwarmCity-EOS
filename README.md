@@ -4,6 +4,8 @@
 
 Swarm City reimplemented under EOS with Polymer 3.0
 
+Inspired by [Swarm City Beliefs "Niks Moet" Talk is cheap. Create.](https://docs.google.com/document/d/1c5VXW-IFEiBdISkF2KthJOsXgavFWVSoJIQ_roiTWN4/edit?usp=sharing)
+
 ### Prerequisites
 
 First, install [Polymer CLI](https://github.com/Polymer/polymer-cli) using
