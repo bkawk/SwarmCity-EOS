@@ -1,0 +1,27 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/pages/swarm-city.html",
+  "fragments": [
+    "src/pages/terminal/my-view1.js",
+    "src/pages/terminal/my-view2.js",
+    "src/pages/terminal/my-view3.js",
+    "src/pages/my-view404.js"
+  ],
+  "sources": [
+    "src/swarm-city.js",
+    "images/**/*",
+    "package.json"
+  ],
+  "extraDependencies": [
+    "manifest.json",
+    "node_modules/@webcomponents/webcomponentsjs/**"
+  ],
+  "builds": [
+    {
+      "preset": "es6-unbundled",
+      "addServiceWorker": true
+    }
+  ],
+  "moduleResolution": "node",
+  "npm": true
+}
