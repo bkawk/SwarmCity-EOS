@@ -12,6 +12,7 @@ import './pages/terminal/page-view3.js';
 import './pages/page-view404.js';
 
 import './components/component-header.js';
+import './components/component-overlay.js';
 
 import { setPassiveTouchGestures, setRootPath } from '@polymer/polymer/lib/utils/settings.js';
 setPassiveTouchGestures(true);
@@ -44,7 +45,7 @@ class SwarmCity extends PolymerElement {
 
     <app-location route="{{route}}" url-space-regex="^[[rootPath]]"></app-location>
     <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
-    
+    <component-overlay></component-overlay>
     <app-header-layout>  
 
       <app-header slot="header" fixed condenses effects="waterfall">
