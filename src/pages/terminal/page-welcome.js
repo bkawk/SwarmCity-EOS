@@ -3,7 +3,7 @@ import '../../shared-styles.js';
 import '../../components/component-ecc.js';
 
 
-class PageView1 extends PolymerElement { static get template() { return html`
+class PageWelcome extends PolymerElement { static get template() { return html`
 
     <style include="shared-styles">
       :host {
@@ -21,4 +21,4 @@ class PageView1 extends PolymerElement { static get template() { return html`
     <component-ecc><component-ecc>
 
 `;} 
-  static get is() { return 'page-view1'; }} customElements.define('page-view1', PageView1);
+  static get is() { return 'page-welcome'; }} customElements.define('page-welcome', PageWelcome);

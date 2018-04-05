@@ -1,20 +1,17 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import '@polymer/app-layout/app-drawer/app-drawer.js';
-import '@polymer/app-layout/app-drawer-layout/app-drawer-layout.js';
 import '@polymer/app-layout/app-header/app-header.js';
 import '@polymer/app-layout/app-header-layout/app-header-layout.js';
 import '@polymer/app-layout/app-scroll-effects/app-scroll-effects.js';
-import '@polymer/app-layout/app-toolbar/app-toolbar.js';
 import '@polymer/app-route/app-location.js';
 import '@polymer/app-route/app-route.js';
 import '@polymer/iron-pages/iron-pages.js';
-import '@polymer/iron-selector/iron-selector.js';
 
-import './pages/terminal/page-view1.js';
+import './pages/terminal/page-welcome.js';
 import './pages/terminal/page-view2.js';
 import './pages/terminal/page-view3.js';
-
 import './pages/page-view404.js';
+
+import './components/component-header.js';
 
 import { setPassiveTouchGestures, setRootPath } from '@polymer/polymer/lib/utils/settings.js';
 setPassiveTouchGestures(true);
@@ -43,59 +40,25 @@ class SwarmCity extends PolymerElement {
         --paper-icon-button-ink-color: white;
       }
 
-      .drawer-list {
-        margin: 0 20px;
-      }
-
-      .drawer-list a {
-        display: block;
-        padding: 0 16px;
-        text-decoration: none;
-        color: var(--app-secondary-color);
-        line-height: 40px;
-      }
-
-      .drawer-list a.iron-selected {
-        color: black;
-        font-weight: bold;
-      }
     </style>
 
-    <app-location route="{{route}}" url-space-regex="^[[rootPath]]">
-    </app-location>
+    <app-location route="{{route}}" url-space-regex="^[[rootPath]]"></app-location>
+    <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
+    
+    <app-header-layout>  
 
-    <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}">
-    </app-route>
+      <app-header slot="header" fixed condenses effects="waterfall">
+        <component-header></component-header>
+      </app-header>
 
-    <app-drawer-layout fullbleed="" narrow="{{narrow}}">
-      <!-- Drawer content -->
-      <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
-        <app-toolbar>Menu</app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="view1" href="[[rootPath]]view1">View One</a>
-          <a name="view2" href="[[rootPath]]view2">View Two</a>
-          <a name="view3" href="[[rootPath]]view3">View Three</a>
-        </iron-selector>
-      </app-drawer>
-
-      <!-- Main content -->
-      <app-header-layout has-scrolling-region="">
-
-        <app-header slot="header" condenses="" reveals="" effects="waterfall">
-          <app-toolbar>
-            <div main-title="">Swarm City</div>
-          </app-toolbar>
-        </app-header>
-
-        <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
-          <page-view1 name="view1"></page-view1>
-          <page-view2 name="view2"></page-view2>
-          <page-view3 name="view3"></page-view3>
-          <page-view404 name="view404"></page-view404>
-          
-        </iron-pages>
-      </app-header-layout>
-    </app-drawer-layout>
+      <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
+        <page-welcome name="welcome"></page-welcome>
+        <page-view2 name="view2"></page-view2>
+        <page-view3 name="view3"></page-view3>
+        <page-view404 name="view404"></page-view404>
+      </iron-pages>
+      
+    </app-header-layout>
 
 `;
   }
@@ -125,20 +88,10 @@ class SwarmCity extends PolymerElement {
   }
 
   _routePageChanged(page) {
-    // If no page was found in the route data, page will be an empty string.
-    // Default to 'view1' in that case.
     this.page = page || 'view1';
-
-    // Close a non-persistent drawer when the page & route are changed.
-    if (!this.$.drawer.persistent) {
-      this.$.drawer.close();
-    }
   }
 
   _pageChanged(page) {
-    // Load page import on demand. Show 404 page if fails
-    // Note: `polymer build` doesn't like string concatenation in
-    // the import statement, so break it up.
     let loaded;
     switch(page) {
       case 'view1':
