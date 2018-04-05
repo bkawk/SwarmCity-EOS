@@ -53,15 +53,20 @@ class ComponentHeader extends PolymerElement { static get template() { return ht
         margin-top:14px;
         cursor: pointer;
         font-weight: 700;
+        transition: background-color 0.5s ease;
+    }
+    .button:hover {
+        background-color: rgba(87, 87, 87, 1);
     }
     component-sprite {
         margin: 20px;
     }
+
     </style>
 
 <div class="navigation">
     <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-        
+
         <component-sprite
             filter="invert"
             filter-value="100"
