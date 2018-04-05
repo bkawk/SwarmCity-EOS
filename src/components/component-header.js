@@ -84,8 +84,18 @@ class ComponentHeader extends PolymerElement { static get template() { return ht
         <a name="view3" href="[[rootPath]]view3">Team</a>
         <a name="view3" href="[[rootPath]]view3">Support</a>
         <div class="spacer"></div>
-        <div class="area"><div href="#" class="button">Join Swarm City</div></div>
+        <div class="area"><div class="button" on-click="_join">Join Swarm City</div></div>
     </iron-selector>
 </div>
 
-`;} static get is() { return 'component-header'; }} customElements.define('component-header', ComponentHeader);
+`;} 
+
+static get is() { 
+    return 'component-header'; 
+}
+
+_join(){
+    this.dispatchEvent(new CustomEvent('overlay', {bubbles: true, composed: true, detail: {action: 'join'}}));
+}
+
+} customElements.define('component-header', ComponentHeader);
