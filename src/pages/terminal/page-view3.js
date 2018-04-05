@@ -1,7 +1,7 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '../../shared-styles.js';
 
-class MyView3 extends PolymerElement { static get template() { return html`
+class PageView3 extends PolymerElement { static get template() { return html`
 
     <style include="shared-styles">
       :host {
@@ -17,4 +17,4 @@ class MyView3 extends PolymerElement { static get template() { return html`
       <p>Ea duis bonorum nec, falli paulo aliquid ei eum.Has at minim mucius aliquam, est id tempor laoreet.Pro saepe pertinax ei, ad pri animal labores suscipiantur.</p>
     </div>
 
-`;} static get is() { return 'my-view3'; }} customElements.define('my-view3', MyView3);
+`;} static get is() { return 'page-view3'; }} customElements.define('page-view3', PageView3);

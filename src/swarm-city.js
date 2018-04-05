@@ -10,11 +10,11 @@ import '@polymer/app-route/app-route.js';
 import '@polymer/iron-pages/iron-pages.js';
 import '@polymer/iron-selector/iron-selector.js';
 
-import './pages/terminal/my-view1.js';
-import './pages/terminal/my-view2.js';
-import './pages/terminal/my-view3.js';
+import './pages/terminal/page-view1.js';
+import './pages/terminal/page-view2.js';
+import './pages/terminal/page-view3.js';
 
-import './pages/my-view404.js';
+import './pages/page-view404.js';
 
 import { setPassiveTouchGestures, setRootPath } from '@polymer/polymer/lib/utils/settings.js';
 setPassiveTouchGestures(true);
@@ -88,22 +88,15 @@ class SwarmCity extends PolymerElement {
         </app-header>
 
         <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
-          <my-view1 name="view1"></my-view1>
-          <my-view2 name="view2"></my-view2>
-          <my-view3 name="view3"></my-view3>
-          <my-view404 name="view404"></my-view404>
+          <page-view1 name="view1"></page-view1>
+          <page-view2 name="view2"></page-view2>
+          <page-view3 name="view3"></page-view3>
+          <page-view404 name="view404"></page-view404>
           
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
-    <script>
-      var ecc = eosjs_ecc
-      ecc.randomKey().then(privateWif =>  {
-        console.log(privateWif)
-        var pubkey = ecc.privateToPublic(privateWif)
-        console.log(pubkey)
-      })
-      </script>
+
 `;
   }
 
@@ -123,18 +116,12 @@ class SwarmCity extends PolymerElement {
 
   ready() {
     super.ready();
-
   }
 
   static get observers() {
     return [
       '_routePageChanged(routeData.page)',
     ];
-  }
-
-  _test(){
-    console.log('test');
-    alert('test2')
   }
 
   _routePageChanged(page) {
@@ -155,16 +142,16 @@ class SwarmCity extends PolymerElement {
     let loaded;
     switch(page) {
       case 'view1':
-        loaded = import('./my-view1.js');
+        loaded = import('./page-view1.js');
         break;
       case 'view2':
-        loaded = import('./my-view2.js');
+        loaded = import('./page-view2.js');
         break;
       case 'view3':
-        loaded = import('./my-view3.js');
+        loaded = import('./page-view3.js');
         break;
       case 'view404':
-        loaded = import('./my-view404.js');
+        loaded = import('./page-view404.js');
         break;
       default:
         loaded = Promise.reject();
