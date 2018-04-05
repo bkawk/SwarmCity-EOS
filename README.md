@@ -1,10 +1,21 @@
+
+<img alt="login-fire" src="https://i.imgur.com/c6YjwPv.png" width="117">
+
 # Swarm City
 
 [![Build Status](https://travis-ci.org/Polymer/polymer-starter-kit.svg?branch=master)](https://travis-ci.org/Polymer/polymer-starter-kit)
 
 Swarm City reimplemented under EOS with Polymer 3.0
 
-Inspired by [Swarm City Beliefs "Niks Moet" Talk is cheap. Create.](https://docs.google.com/document/d/1c5VXW-IFEiBdISkF2KthJOsXgavFWVSoJIQ_roiTWN4/edit?usp=sharing)
+
+## Introduction
+At its core Swarm City is an EOS based marketplace with a built in reputation system.
+Swarm City uses blockchain technology and smart contracts to allow people to communicate and transact value, and earn contextual reputation without third party interference.
+
+Swarm City makes it easy for people to create and transact in context specific marketplaces, These marketplaces also form decentralized communities that benefit from economies of scale, and earn reputation together, We call these communities “hives”.
+
+
+Our belieffs: [Swarm City Beliefs "Niks Moet" Talk is cheap. Create.](https://docs.google.com/document/d/1c5VXW-IFEiBdISkF2KthJOsXgavFWVSoJIQ_roiTWN4/edit?usp=sharing)
 
 ### Prerequisites
 
@@ -38,3 +49,7 @@ Optional but highly encouraged: Follow [this commit guide](https://conventionalc
 
 5. Push to the branch: `git push origin my-new-feature`
 6. Submit a pull request. ♡
+
+### EOS Token Contributions
+
+Any contributions are greatfully accepted on this EOS address: 0xbb616d1490288d48acfc2a60f306aa887602c8cc
