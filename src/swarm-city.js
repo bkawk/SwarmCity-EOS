@@ -78,16 +78,6 @@ class SwarmCity extends PolymerElement {
     };
   }
 
-  ready() {
-    super.ready();
-    window.addEventListener('overlay', (event) => {this._overlay(event.detail.action)});
-  }
-
-  _overlay(event){
-    if(event === 'join'){
-      console.log(event)
-    }
-  }
 
   static get observers() {
     return [
