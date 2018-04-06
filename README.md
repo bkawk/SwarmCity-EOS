@@ -28,8 +28,6 @@ First, install [Polymer CLI](https://github.com/Polymer/polymer-cli) using
 
 Second, install [yarn](https://yarnpkg.com/en/docs/install) 
 
-    brew install yarn
-
 and then install dependancies with 
 
     yarn install --flat

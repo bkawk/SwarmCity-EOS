@@ -30,13 +30,11 @@ class ComponentHeader extends PolymerElement { static get template() { return ht
     }
 
     .drawer-list a.iron-selected {
-        color: rgba(0, 0, 0, 1);
-        background-color: rgba(235, 220, 142, 1);
+        background-color: rgba(62, 113, 205, 1);
     }
 
     .drawer-list a:hover {
-        background-color: rgba(234, 213, 109, 1);
-        color: rgba(0, 0, 0, 1);
+        background-color: rgba(35, 61, 143, 1);
     }
 
     .navigation {

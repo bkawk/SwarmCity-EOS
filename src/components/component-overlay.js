@@ -30,12 +30,26 @@ class ComponentOverlay extends PolymerElement { static get template() { return h
         bottom: 0;
         z-index: 3; 
         cursor: pointer; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .card {
+        width: 412px;
+        height: 500px
+        padding: 45px;
     }
 
     </style>
 
+
 <div class="overlay" on-click="_hide">
-sss
+<div class="card" on-click="_clickCard">
+        <div>Join SwarmCity</div>
+        <p>Username</p>
+        <p>Password</p>
+        <p>Download Backup</p>
+    </div>
 </div>
 
 `;} 
@@ -43,8 +57,6 @@ sss
 static get is() { 
     return 'component-overlay'; 
 }
-
-
 
 ready() {
     super.ready();
@@ -59,6 +71,10 @@ _show(event){
 
 _hide(){
     this.updateStyles({'--display-none-block': 'none'});
+}
+
+_clickCard(event){
+    event.stopPropagation();
 }
 
 } customElements.define('component-overlay', ComponentOverlay);
