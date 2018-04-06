@@ -28,6 +28,8 @@ First, install [Polymer CLI](https://github.com/Polymer/polymer-cli) using
 
 Second, install [yarn](https://yarnpkg.com/en/docs/install) 
 
+    npm install yarn -g
+
 and then install dependancies with 
 
     yarn install --flat
@@ -50,4 +52,4 @@ Optional but highly encouraged: Follow [this commit guide](https://conventionalc
 
 ### EOS Token Contributions
 
-Any contributions are greatfully accepted on this EOS address: 0xbb616d1490288d48acfc2a60f306aa887602c8cc
+Any contributions are gratefully accepted on this EOS address: 0xbb616d1490288d48acfc2a60f306aa887602c8cc
