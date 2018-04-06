@@ -35,21 +35,46 @@ class ComponentOverlay extends PolymerElement { static get template() { return h
         justify-content: center;
     }
     .card {
-        width: 412px;
-        height: 500px
+        width: 322px;
         padding: 45px;
+        cursor: default;
     }
-
+    .center {
+        padding: 20px 0 0;
+        text-align: center;
+        color: #8d919a;
+        font-size: 12px;
+        line-height: 20px;
+    }
+    .center span {
+        color: #4079B0;
+        cursor: pointer;
+        font-weight: 700;
+    }
     </style>
 
 
 <div class="overlay" on-click="_hide">
-<div class="card" on-click="_clickCard">
-        <div>Join SwarmCity</div>
-        <p>Username</p>
-        <p>Password</p>
-        <p>Download Backup</p>
-    </div>
+    
+    <template is="dom-if" if="{{join}}">
+        <div class="card" on-click="_clickCard">
+            <h2>Join Swarm City <small>SwarmCity is the place to transact and communicate without interference.</small></h2>
+            <input type="text" class="text" name="username" placeholder="Username">
+            <button class="btn-critical">Check Availability</button>
+            <div class="center">Already on Swarm City? <span on-click="_logIn">Log In</span></div>
+        </div>
+    </template>
+
+    <template is="dom-if" if="{{!join}}">
+        <div class="card" on-click="_clickCard">
+            <h2>Log In</h2>
+            <input type="text" class="text" name="username" placeholder="Username">
+            <input type="text" class="text" name="password" placeholder="Password or Private Key">
+            <button class="btn-critical">Login</button>
+            <div class="center">New to Swarm City? <span on-click="_join">Join Swarm City</span></div>
+        </div>
+    </template>
+
 </div>
 
 `;} 
@@ -63,10 +88,21 @@ ready() {
     window.addEventListener('overlay', (event) => {this._show(event.detail.action)});
 }
 
+_logIn(){
+    this.join = false;
+}
+
+_join(){
+    this.join = true;
+}
+
 _show(event){
+    this.updateStyles({'--display-none-block': 'block'});
     if(event === 'join'){
-        this.updateStyles({'--display-none-block': 'block'});
-    } 
+        this._join();
+    } else {
+        this._logIn();
+    }
 }
 
 _hide(){
@@ -75,6 +111,14 @@ _hide(){
 
 _clickCard(event){
     event.stopPropagation();
+}
+
+static get properties() {
+    return {
+        join: {
+            type: Boolean,
+        },
+    };
 }
 
 } customElements.define('component-overlay', ComponentOverlay);

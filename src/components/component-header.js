@@ -48,7 +48,7 @@ class ComponentHeader extends PolymerElement { static get template() { return ht
         width: 160px;
         text-align: center;
         line-height: 36px;
-        margin-top:14px;
+        margin-top: 14px;
         cursor: pointer;
         font-weight: 700;
         transition: background-color 0.5s ease;
@@ -59,6 +59,7 @@ class ComponentHeader extends PolymerElement { static get template() { return ht
     component-sprite {
         margin: 20px;
     }
+    
 
     </style>
 
