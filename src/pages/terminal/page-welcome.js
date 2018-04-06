@@ -1,24 +1,17 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '../../shared-styles.js';
-import '../../components/component-ecc.js';
-
-
+import '../../components/component-jumbo.js';
 class PageWelcome extends PolymerElement { static get template() { return html`
 
     <style include="shared-styles">
       :host {
         display: block;
         padding: 10px;
+        background-color: #303D8D;
       }
     </style>
 
-    <div class="card">
-      <div class="circle">1</div>
-      <h1>View One</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
-    </div>
-    <component-ecc><component-ecc>
+    <component-jumbo><component-jumbo>
 
 `;} 
   static get is() { return 'page-welcome'; }} customElements.define('page-welcome', PageWelcome);
