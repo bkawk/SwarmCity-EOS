@@ -9,9 +9,9 @@ class ComponentJumbo extends PolymerElement { static get template() { return htm
     :host {
         display: block;
         font-size: 14px;
-        height: 300px;
+        height: 280px;
         margin-left:32px;
-        margin-top:130px;
+        margin-top:100px;
         color: #FFFFFF;
     }
     .welcome-to {
@@ -21,13 +21,14 @@ class ComponentJumbo extends PolymerElement { static get template() { return htm
     .swarmcity-eos {
         font-weight: 700;
         font-size: 60px;
+        margin-bottom:20px;
     }
     .intro{
         font-weight: 600;
         font-size: 21px;
     }
     .strap{
-        font-weight: 50;
+        font-weight: 500;
         font-size: 14px;
         color: #E9EDFF;
     }

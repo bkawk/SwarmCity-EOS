@@ -43,7 +43,7 @@ class ComponentHeader extends PolymerElement { static get template() { return ht
     .spacer {
         flex: 1
     }
-    .button{
+    .lighter {
         background-color: rgba(64, 64, 64, 1);
         width: 160px;
         text-align: center;
@@ -53,9 +53,18 @@ class ComponentHeader extends PolymerElement { static get template() { return ht
         font-weight: 700;
         transition: background-color 0.5s ease;
     }
-    .button:hover {
+    .lighter:hover {
         background-color: rgba(87, 87, 87, 1);
     }
+    .button{
+        width: 110px;
+        text-align: center;
+        line-height: 36px;
+        margin-top: 14px;
+        cursor: pointer;
+        font-weight: 700;
+    }
+
     component-sprite {
         margin: 20px;
     }
@@ -80,10 +89,10 @@ class ComponentHeader extends PolymerElement { static get template() { return ht
         <a name="view2" href="[[rootPath]]view2">Hives</a>
         <a name="view3" href="[[rootPath]]view3">Philosophy</a>
         <a name="view3" href="[[rootPath]]view3">Tech</a>
-        <a name="view3" href="[[rootPath]]view3">Team</a>
         <a name="view3" href="[[rootPath]]view3">Support</a>
         <div class="spacer"></div>
-        <div class="area"><div class="button" on-click="_join">Join Swarm City</div></div>
+        <div class="area"><div class="button" on-click="_logIn">Log In</div></div>
+        <div class="area"><div class="lighter" on-click="_join">Join Swarm City</div></div>
     </iron-selector>
 </div>
 
@@ -95,6 +104,9 @@ static get is() {
 
 _join(){
     this.dispatchEvent(new CustomEvent('overlay', {bubbles: true, composed: true, detail: {action: 'join'}}));
+}
+_logIn(){
+    this.dispatchEvent(new CustomEvent('overlay', {bubbles: true, composed: true, detail: {action: 'login'}}));
 }
 
 } customElements.define('component-header', ComponentHeader);
