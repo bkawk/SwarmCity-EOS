@@ -7,19 +7,23 @@ class ComponentOverlay extends PolymerElement { static get template() { return h
 
     <style include="shared-styles">
     :host {
+        --opacity: 0;
         --display-none-block: none;
         position: fixed; 
-        display: var(--display-none-block); 
+        display: var(--display-none-block);
         width: 100%; 
         height: 100%; 
         top: 0; 
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5); 
         z-index: 2; 
     }
+
     .overlay{
+        opacity: var(--opacity);
+        background-color: rgba(0, 0, 0, 0.5); 
+        transition: opacity 0.2s ease-in-out;
         position: fixed; 
         display: block;
         width: 100%; 
@@ -98,6 +102,9 @@ _join(){
 
 _show(event){
     this.updateStyles({'--display-none-block': 'block'});
+    setTimeout(()=>{
+        this.updateStyles({'--opacity': 1});
+    }, 1);
     if(event === 'join'){
         this._join();
     } else {
@@ -106,7 +113,10 @@ _show(event){
 }
 
 _hide(){
-    this.updateStyles({'--display-none-block': 'none'});
+    this.updateStyles({'--opacity': 0});
+    setTimeout(()=>{
+        this.updateStyles({'--display-none-block': 'none'});
+    }, 200);
 }
 
 _clickCard(event){
