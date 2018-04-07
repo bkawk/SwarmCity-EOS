@@ -1,5 +1,5 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import '../imports/import-socketio.js';
+// import '../imports/import-socketio.js';
 
 class ComponentApi extends PolymerElement { 
 
@@ -24,7 +24,8 @@ static get properties() {
     @property {string} Username - The username to check
 
 */
-_usernameIsUnique(username){
+usernameIsUnique(username){
+    console.log(username);
     return new Promise((resolve, reject) => {
         resolve(true); 
     })

@@ -2,6 +2,7 @@ import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-selector/iron-selector.js';
 import '../shared-styles.js';
 import './component-sprite.js';
+import './data/component-api.js';
 
 class ComponentOverlay extends PolymerElement { static get template() { return html`
 
@@ -57,15 +58,16 @@ class ComponentOverlay extends PolymerElement { static get template() { return h
     }
     </style>
 
+<component-api id="api"></component-api>
 
 <div class="overlay" on-click="_hide">
     
     <template is="dom-if" if="{{join}}">
         <div class="card" on-click="_clickCard">
             <h2>Join Swarm City <small>SwarmCity is the place to transact and communicate without interference.</small></h2>
-            <input type="text" class="text" name="username" placeholder="Username">
-            <button class="btn-critical">Check Availability</button>
-            <div class="center">Already on Swarm City? <span on-click="_logIn">Log In</span></div>
+            <input type="text" class="text" name="textbox2" placeholder="Username" id="username">
+            <button class="btn-critical" on-click="_checkUsername">Check Availability</button>
+            <div class="center">Already on Swarm City? <span on-click="_logIn">Log In</span> = {{test}} =</div>
         </div>
     </template>
 
@@ -123,10 +125,26 @@ _clickCard(event){
     event.stopPropagation();
 }
 
+_checkUsername(){
+    var username = this.shadowRoot.querySelector("#username").value
+    this.$.api.usernameIsUnique(username)
+    .then((response) => {
+        console.log(response);
+    })
+    .catch((err) => {
+        console.log(Error(err));
+    })
+    
+}
+
 static get properties() {
     return {
         join: {
             type: Boolean,
+        },
+        test: {
+            type: String,
+            value: "test555",
         },
     };
 }
