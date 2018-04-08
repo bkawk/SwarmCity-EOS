@@ -21,7 +21,7 @@ class ComponentSprite extends PolymerElement {
         filter: invert(100%);  
         width: 47px;
         height: 21px;
-        background-position:  -77px -72px;
+        background-position: -77px -72px;
     }
 
     @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
@@ -29,9 +29,6 @@ class ComponentSprite extends PolymerElement {
     only screen and (min-resolution: 240dpi) {
         .sprite {
             background-image: url(../../images/sprite@2x.png);
-            background-size: 200px 200px;
-            background-repeat: no-repeat;
-            display: block;
         }
     }
     </style>
