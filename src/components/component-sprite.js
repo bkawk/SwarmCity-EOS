@@ -7,14 +7,18 @@ class ComponentSprite extends PolymerElement {
 
     <style>
     :host {
-        filter: invert(100%);
         display: block;
-        width: 47px;
-        height: 21px;
         overflow: hidden;
-        background: url(../../images/sprite@1x.png) -77px -72px;
+        background: url(../../images/sprite@1x.png);
         background-size: 200px 200px;
         background-repeat: no-repeat;
+    }
+    
+    .logo-invert {
+        filter: invert(100%);
+        width: 47px;
+        height: 21px;
+        background-position: -77px -72px;
     }
 
     @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
@@ -26,7 +30,6 @@ class ComponentSprite extends PolymerElement {
     }
     </style>
 
-
 `;} 
 
 static get is() { 
@@ -35,41 +38,11 @@ static get is() {
 
 static get properties() {
     return {
-        filter: {
+        icon: {
             type: String,
             reflectToAttribute: true,
             value: 'none',
         },
-        filterValue: {
-            type: Number,
-            reflectToAttribute: true,
-            value: 100,
-        },
-        width: {
-            type: Number,
-            reflectToAttribute: true,
-            value: 100,
-        },
-        height: {
-            type: Number,
-            reflectToAttribute: true,
-            value: 100,
-        },
-        zoom: {
-            type: Number,
-            reflectToAttribute: true,
-            value: 200,
-        },
-        offsetX: {
-            type: Number,
-            reflectToAttribute: true,
-            value: -77,
-        },
-        offsetY: {
-            type: Number,
-            reflectToAttribute: true,
-            value: -72,
-        }
     };
 }
 

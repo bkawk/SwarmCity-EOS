@@ -76,13 +76,7 @@ class ComponentHeader extends PolymerElement { static get template() { return ht
     <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
 
         <component-sprite
-            filter="invert"
-            filter-value="100"
-            width="47"
-            height="21"
-            zoom="200"
-            offset-x="-77"
-            offset-y="-72">
+            icon="logo-invert">
         </component-sprite>
 
         <a name="welcome" href="[[rootPath]]welcome">Marketplaces</a>
