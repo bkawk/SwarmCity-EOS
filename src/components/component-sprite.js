@@ -7,29 +7,35 @@ class ComponentSprite extends PolymerElement {
 
     <style>
     :host {
-        display: block;
         overflow: hidden;
-        background: url(../../images/sprite@1x.png);
+    }
+
+    .sprite {
+        background-image: url(../../images/sprite@1x.png);
         background-size: 200px 200px;
         background-repeat: no-repeat;
+        display: block;
     }
     
     .logo-invert {
-        filter: invert(100%);
+        filter: invert(100%);  
         width: 47px;
         height: 21px;
-        background-position: -77px -72px;
+        background-position:  -77px -72px;
     }
 
     @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
     only screen and (min--moz-device-pixel-ratio: 1.5),
     only screen and (min-resolution: 240dpi) {
-        :host {
-            background: url(../../images/sprite@2x.png) -77px -72px;
+        .sprite {
+            background-image: url(../../images/sprite@2x.png);
+            background-size: 200px 200px;
+            background-repeat: no-repeat;
+            display: block;
         }
     }
     </style>
-
+    <div id="icon" class="sprite"></div>
 `;} 
 
 static get is() { 
@@ -44,6 +50,11 @@ static get properties() {
             value: 'none',
         },
     };
+}
+
+ready() {
+    super.ready();
+    this.$.icon.classList.add(this.icon);
 }
 
 } customElements.define('component-sprite', ComponentSprite);
