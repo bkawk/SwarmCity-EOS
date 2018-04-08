@@ -1,25 +1,38 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-selector/iron-selector.js';
-import '../shared-styles.js';
 
 class ComponentSprite extends PolymerElement { 
     static get template() { 
         return html`
 
-    <style include="shared-styles">
+    <style>
     :host {
-        filter: invert(100%);
-        display: block;
-        width: 47px;
-        height: 21px;
         overflow: hidden;
-        background: url(../../images/sprite@2x.png) -77px -72px;
+    }
+
+    .sprite {
+        background-image: url(../../images/sprite@1x.png);
         background-size: 200px 200px;
         background-repeat: no-repeat;
+        display: block;
+    }
+    
+    .logo-invert {
+        filter: invert(100%);  
+        width: 47px;
+        height: 21px;
+        background-position: -77px -72px;
+    }
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+    only screen and (min--moz-device-pixel-ratio: 1.5),
+    only screen and (min-resolution: 240dpi) {
+        .sprite {
+            background-image: url(../../images/sprite@2x.png);
+        }
     }
     </style>
-
-
+    <div id="icon" class="sprite"></div>
 `;} 
 
 static get is() { 
@@ -28,42 +41,17 @@ static get is() {
 
 static get properties() {
     return {
-        filter: {
+        icon: {
             type: String,
             reflectToAttribute: true,
             value: 'none',
         },
-        filterValue: {
-            type: Number,
-            reflectToAttribute: true,
-            value: 100,
-        },
-        width: {
-            type: Number,
-            reflectToAttribute: true,
-            value: 100,
-        },
-        height: {
-            type: Number,
-            reflectToAttribute: true,
-            value: 100,
-        },
-        zoom: {
-            type: Number,
-            reflectToAttribute: true,
-            value: 200,
-        },
-        offsetX: {
-            type: Number,
-            reflectToAttribute: true,
-            value: -77,
-        },
-        offsetY: {
-            type: Number,
-            reflectToAttribute: true,
-            value: -72,
-        }
     };
+}
+
+ready() {
+    super.ready();
+    this.$.icon.classList.add(this.icon);
 }
 
 } customElements.define('component-sprite', ComponentSprite);
