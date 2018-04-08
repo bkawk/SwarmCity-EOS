@@ -25,9 +25,9 @@ static get properties() {
 
 */
 usernameIsUnique(username){
-    console.log(username);
     return new Promise((resolve, reject) => {
-        resolve(true); 
+        // TODO: Link this to the API
+        resolve({response: true, username: username}); 
     })
 }
 

@@ -65,9 +65,15 @@ class ComponentOverlay extends PolymerElement { static get template() { return h
     <template is="dom-if" if="{{join}}">
         <div class="card" on-click="_clickCard">
             <h2>Join Swarm City <small>SwarmCity is the place to transact and communicate without interference.</small></h2>
-            <input type="text" class="text" name="textbox2" placeholder="Username" id="username">
-            <button class="btn-critical" on-click="_checkUsername">Check Availability</button>
-            <div class="center">Already on Swarm City? <span on-click="_logIn">Log In</span> = {{test}} =</div>
+            <input type="text" class$="{{error}}" placeholder="Username" id="username">
+            <template is="dom-if" if="{{!available}}">
+                <button class="btn-critical" on-click="_checkUsername">Check Availability</button>
+            </template>
+            <template is="dom-if" if="{{available}}">
+                <input type="password" class="text" placeholder="Password" id="password">
+                <button class="btn-critical" on-click="_checkUsername">Create Account</button>
+            </template>
+            <div class="center">Already on Swarm City? <span on-click="_logIn">Log In</span></div>
         </div>
     </template>
 
@@ -128,8 +134,14 @@ _clickCard(event){
 _checkUsername(){
     var username = this.shadowRoot.querySelector("#username").value
     this.$.api.usernameIsUnique(username)
-    .then((response) => {
-        console.log(response);
+    .then((object) => {
+        if(object.response === true){
+            this.available = true;
+            this.error = 'text'
+        } else {
+            this.available = false;
+            this.error = 'text error'
+        }
     })
     .catch((err) => {
         console.log(Error(err));
@@ -146,6 +158,14 @@ static get properties() {
             type: String,
             value: "test555",
         },
+        available: {
+            type: Boolean,
+            value: false,
+        },
+        error: {
+            type: String,
+            value: 'text'
+        }
     };
 }
 
