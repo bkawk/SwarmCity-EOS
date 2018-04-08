@@ -1,5 +1,5 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import '../../shared-styles.js';
+import '../../styles/shared-styles.js';
 
 class PageView3 extends PolymerElement { static get template() { return html`
 

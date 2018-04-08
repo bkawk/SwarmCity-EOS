@@ -1,5 +1,5 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import '../../shared-styles.js';
+import '../../styles/shared-styles.js';
 import '../../components/component-jumbo.js';
 class PageWelcome extends PolymerElement { static get template() { return html`
 

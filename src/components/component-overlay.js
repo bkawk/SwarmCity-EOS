@@ -1,6 +1,6 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-selector/iron-selector.js';
-import '../shared-styles.js';
+import '../styles/shared-styles.js';
 import './component-sprite.js';
 
 class ComponentOverlay extends PolymerElement { static get template() { return html`
