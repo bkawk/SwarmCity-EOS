@@ -1,21 +1,28 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-selector/iron-selector.js';
-import '../styles/shared-styles.js';
 
 class ComponentSprite extends PolymerElement { 
     static get template() { 
         return html`
 
-    <style include="shared-styles">
+    <style>
     :host {
         filter: invert(100%);
         display: block;
         width: 47px;
         height: 21px;
         overflow: hidden;
-        background: url(../../images/sprite@2x.png) -77px -72px;
+        background: url(../../images/sprite@1x.png) -77px -72px;
         background-size: 200px 200px;
         background-repeat: no-repeat;
+    }
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+    only screen and (min--moz-device-pixel-ratio: 1.5),
+    only screen and (min-resolution: 240dpi) {
+        :host {
+            background: url(../../images/sprite@2x.png) -77px -72px;
+        }
     }
     </style>
 
