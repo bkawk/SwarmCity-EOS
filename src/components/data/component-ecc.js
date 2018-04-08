@@ -25,7 +25,7 @@ class ComponentEcc extends PolymerElement {
           } else {
             let publicKey = ecc.privateToPublic(privateKey);
             if(ecc.isValidPublic(publicKey) && ecc.isValidPrivate(privateKey)){
-              resolve({publicKey: publicKey, privateKey: privateKey})
+              resolve({status: 200, publicKey: publicKey, privateKey: privateKey})
             } else {
               reject(Error('Invalid key returned'))
             }
@@ -46,7 +46,7 @@ sign(message, privateKey){
         if(!signature){
           reject(Error('No hex signaure returned'));
         } else {
-          resolve(signature);
+          resolve({status: 200, signature: signature});
         }
       })
       .catch(error => {
@@ -65,11 +65,11 @@ verify(signature, message, publicKey){
       ecc.verify(signature, message, publicKey)
       .then(verified =>  {
         if(verified === true){
-          resolve({status: 'verified', publicKey: publicKey});
+          resolve({status: 200, publicKey: publicKey});
         } else {
           ecc.recover(signature, message)
           .then(publicKey =>  {
-            reject({status: 'error', publicKey: publicKey});
+            resolve({status: 400, publicKey: publicKey});
           })
           .catch(error => {
             reject(Error(error));
@@ -79,11 +79,28 @@ verify(signature, message, publicKey){
       .catch(error => {
         reject(Error(error));
       })
+    } else {
+      reject(Error('Missing or incorect arguments'));
     }
   })
 }
 
-
+sha256(message){
+  return new Promise((resolve, reject) => {
+    const ecc = eosjs_ecc
+    if(message){
+      ecc.sha256(message, 'hex')
+      .then(sha256Hash =>  {
+        resolve({status: 200, sha256Hash: sha256Hash});
+      })
+      .catch(error => {
+        reject(Error(error));
+      })
+    }  else {
+      reject(Error('Missing or incorect arguments'));
+    }
+  })
+}
 
 
 
