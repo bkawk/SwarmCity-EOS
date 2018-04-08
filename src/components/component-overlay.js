@@ -2,7 +2,9 @@ import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-selector/iron-selector.js';
 import '../shared-styles.js';
 import './component-sprite.js';
+
 import './data/component-api.js';
+import './data/component-ecc.js';
 
 class ComponentOverlay extends PolymerElement { static get template() { return html`
 
@@ -59,6 +61,7 @@ class ComponentOverlay extends PolymerElement { static get template() { return h
     </style>
 
 <component-api id="api"></component-api>
+<component-ecc id="ecc"></component-ecc>
 
 <div class="overlay" on-click="_hide">
     
@@ -71,7 +74,7 @@ class ComponentOverlay extends PolymerElement { static get template() { return h
             </template>
             <template is="dom-if" if="{{available}}">
                 <input type="password" class="text" placeholder="Password" id="password">
-                <button class="btn-critical" on-click="_checkUsername">Create Account</button>
+                <button class="btn-critical" on-click="_createAccount">Create Account</button>
             </template>
             <div class="center">Already on Swarm City? <span on-click="_logIn">Log In</span></div>
         </div>
@@ -120,6 +123,17 @@ _show(event){
     }
 }
 
+
+_createAccount(){
+    this.$.ecc.makeKeyPair()
+    .then((object) => {
+        console.log(object)
+    })
+    .catch((err) => {
+        console.log(Error(err));
+    })
+}
+
 _hide(){
     this.updateStyles({'--opacity': 0});
     setTimeout(()=>{
@@ -146,7 +160,6 @@ _checkUsername(){
     .catch((err) => {
         console.log(Error(err));
     })
-    
 }
 
 static get properties() {
