@@ -103,5 +103,89 @@ sha256(message){
 }
 
 
+  /**
+  * create a utc Keystore
+  * @return {utcKeyStore} utcKeyStore
+  * @argument {String} privateKey
+  * @argument {String} hexAddress
+  * @argument {String} password
+  */
+  utcKeystore(privateKey, hexAddress, password) {
+  return new Promise((resolve, reject) => {
+      const id = webpack.uuid.v4({random: webpack.randomBytes(16)});
+      const salt = webpack.randomBytes(32);
+      const iv = webpack.randomBytes(16);
+      const Buffer = webpack.Buffer.Buffer;
+      const key = webpack.scrypt(new Buffer(password), salt, 1024, 8, 1, 32);
+      const cipher = webpack.createCipheriv('aes-128-ctr', key.slice(0, 16), iv);
+      const ciphertext = Buffer.concat([cipher.update(privateKey), cipher.final()]);
+      const mac = webpack.sha3(Buffer.concat([key.slice(16, 32),
+      new Buffer(ciphertext, 'hex')]));
+      resolve({
+          fileName: ['UTC--',
+          new Date().toJSON().replace(/:/g, '-'), '--',
+          hexAddress].join(''),
+          address: hexAddress,
+          privateKey: privateKey.toString('hex'),
+          utcKeystore: {
+              version: 3,
+              id: id,
+              address: hexAddress,
+              Crypto: {
+                  ciphertext: ciphertext.toString('hex'),
+                  cipherparams: {
+                      iv: iv.toString('hex'),
+                  },
+                  cipher: 'aes-128-ctr',
+                  kdf: 'scrypt',
+                  kdfparams: {
+                      'dklen': 32,
+                      'salt': salt.toString('hex'),
+                      'n': 1024,
+                      'r': 8,
+                      'p': 1,
+                  },
+                  mac: mac.toString('hex'),
+              },
+          },
+      });
+    });
+  }
+
+  /**
+  * decrypt utc keystore
+  * @return {privateKey} privateKey
+  * @argument {String} utcKeystore
+  * @argument {String} password
+  */
+  decryptUtcKeystore(utcKeystore, password) {
+      return new Promise((resolve, reject) => {
+          const Buffer = webpack.Buffer.Buffer;
+          const kdfparams = utcKeystore.Crypto.kdfparams;
+          let key;
+          if (utcKeystore.Crypto.kdf === 'scrypt') {
+              key = webpack.scrypt(new Buffer(password), new Buffer(kdfparams.salt, 'hex'),
+              kdfparams.n, kdfparams.r, kdfparams.p, kdfparams.dklen);
+          }
+          else if (utcKeystore.Crypto.kdf === 'pbkdf2') {
+              if (kdfparams.prf !== 'hmac-sha256') {
+                  reject(Error('hmac-sha256 is not supported'));
+              }
+              key = pbkdf2Sync(new Buffer(password), new Buffer(kdfparams.salt, 'hex'),
+              kdfparams.c, kdfparams.dklen, 'sha256');
+          } else {
+              reject(Error('Unsupported key derivation scheme'));
+          }
+          const ciphertext = new Buffer(utcKeystore.Crypto.ciphertext, 'hex');
+          const mac = webpack.sha3(Buffer.concat([key.slice(16, 32), ciphertext]));
+          if (mac.toString('hex') !== utcKeystore.Crypto.mac) {
+              reject(Error('Wrong Password'));
+          }
+          const decipher = webpack.createDecipheriv(utcKeystore.Crypto.cipher, key.slice(0, 16),
+          new Buffer(utcKeystore.Crypto.cipherparams.iv, 'hex'));
+          resolve(Buffer.concat([decipher.update(ciphertext), decipher.final()]));
+      });
+  }
+
 
 } customElements.define('component-ecc', ComponentEcc);
