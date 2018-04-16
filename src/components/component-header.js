@@ -1,4 +1,4 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-selector/iron-selector.js';
 import '../styles/shared-styles.js';
 import './component-sprite.js';
