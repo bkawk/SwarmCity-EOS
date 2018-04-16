@@ -20,7 +20,7 @@
   },
   "scripts": {
     "lint": "npm run lint:javascript && polymer lint",
-    "lint:javascript": "eslint . --ext js,html --ignore-path .gitignore",
+    "lint:javascript": "eslint . --ext js,html",
     "test": "polymer test",
     "test:integration": "polymer build # test that psk builds without error with the CLI",
     "webpack": "webpack"
@@ -133,5 +133,37 @@
     "globals": "11.4.0",
     "to-fast-properties": "2.0.0",
     "slice-ansi": "1.0.0"
+  },
+  "eslintConfig": {
+    "extends": ["eslint:recommended", "google"],
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true
+    },
+    "plugins": [
+      "html"
+  ],
+  "rules": {
+      "brace-style": "off",
+      "new-cap": ["error", { "capIsNewExceptions": ["Polymer"] }],
+      "require-jsdoc": "off",
+      "max-len": ["error", 100]
+  },
+  "globals": {
+      "Polymer": true,
+      "Promise": true,
+      "webpack": true
   }
+},
+"eslintIgnore": [
+  "*.config.js", 
+  "*.min.js", 
+  "build/*", 
+  "environment*.js", 
+  "build",
+  "src/components/imports/*"
+],
+"babel": {
+  "presets": [["es2015", {"modules": false}]]
+}
 }
