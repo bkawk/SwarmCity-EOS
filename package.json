@@ -3,14 +3,14 @@
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.2",
+    "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "buffer": "^5.1.0",
     "crypto": "^1.0.1",
     "eslint": "^4.19.1",
     "eslint-config-google": "^0.9.1",
-    "eslint-plugin-html": "^2.0.0",
+    "eslint-plugin-html": "^4.0.3",
     "ethereumjs-util": "^5.1.5",
     "scryptsy": "^2.0.0",
     "uuid": "^3.2.1",
@@ -19,7 +19,7 @@
     "webpack-cli": "^2.0.14"
   },
   "scripts": {
-    "lint": "npm run lint:javascript && polymer lint",
+    "lint": "npm run lint:javascript",
     "lint:javascript": "eslint . --ext js,html",
     "test": "polymer test",
     "test:integration": "polymer build # test that psk builds without error with the CLI",

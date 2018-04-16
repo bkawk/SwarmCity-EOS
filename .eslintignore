@@ -1,0 +1,12 @@
+*.min.js
+*.config.js
+environment*.js
+socket.io.js 
+build
+abi.js
+import-ecc.js
+import-socketio.js
+main.min.js
+*.ecc.js
+*/*.html
+src/components/imports/
