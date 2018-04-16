@@ -3,6 +3,9 @@ import '@polymer/iron-selector/iron-selector.js';
 import '../styles/shared-styles.js';
 import './component-sprite.js';
 
+import './data/component-api.js';
+import './data/component-ecc.js';
+
 class ComponentOverlay extends PolymerElement { static get template() { return html`
 
     <style include="shared-styles">
@@ -57,14 +60,22 @@ class ComponentOverlay extends PolymerElement { static get template() { return h
     }
     </style>
 
+<component-api id="api"></component-api>
+<component-ecc id="ecc"></component-ecc>
 
 <div class="overlay" on-click="_hide">
     
     <template is="dom-if" if="{{join}}">
         <div class="card" on-click="_clickCard">
             <h2>Join Swarm City <small>SwarmCity is the place to transact and communicate without interference.</small></h2>
-            <input type="text" class="text" name="username" placeholder="Username">
-            <button class="btn-critical">Check Availability</button>
+            <input type="text" class$="{{error}}" placeholder="Username" id="username">
+            <template is="dom-if" if="{{!available}}">
+                <button class="btn-critical" on-click="_checkUsername">Check Availability</button>
+            </template>
+            <template is="dom-if" if="{{available}}">
+                <input type="password" class="text" placeholder="Password" id="password">
+                <button class="btn-critical" on-click="_createAccount">Create Account</button>
+            </template>
             <div class="center">Already on Swarm City? <span on-click="_logIn">Log In</span></div>
         </div>
     </template>
@@ -112,6 +123,17 @@ _show(event){
     }
 }
 
+
+_createAccount(){
+    this.$.ecc.makeKeyPair()
+    .then((object) => {
+        console.log(object)
+    })
+    .catch((err) => {
+        console.log(Error(err));
+    })
+}
+
 _hide(){
     this.updateStyles({'--opacity': 0});
     setTimeout(()=>{
@@ -123,11 +145,40 @@ _clickCard(event){
     event.stopPropagation();
 }
 
+_checkUsername(){
+    var username = this.shadowRoot.querySelector("#username").value
+    this.$.api.usernameIsUnique(username)
+    .then((object) => {
+        if(object.response === true){
+            this.available = true;
+            this.error = 'text'
+        } else {
+            this.available = false;
+            this.error = 'text error'
+        }
+    })
+    .catch((err) => {
+        console.log(Error(err));
+    })
+}
+
 static get properties() {
     return {
         join: {
             type: Boolean,
         },
+        test: {
+            type: String,
+            value: "test555",
+        },
+        available: {
+            type: Boolean,
+            value: false,
+        },
+        error: {
+            type: String,
+            value: 'text'
+        }
     };
 }
 

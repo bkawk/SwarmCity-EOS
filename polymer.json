@@ -1,11 +1,11 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/pages/swarm-city.html",
+  "shell": "src/swarm-city.js",
   "fragments": [
-    "src/pages/terminal/my-view1.js",
-    "src/pages/terminal/my-view2.js",
-    "src/pages/terminal/my-view3.js",
-    "src/pages/my-view404.js"
+    "src/pages/terminal/page-welcome.js",
+    "src/pages/terminal/page-view2.js",
+    "src/pages/terminal/page-view3.js",
+    "src/pages/page-view404.js"
   ],
   "sources": [
     "src/swarm-city.js",
@@ -22,6 +22,11 @@
       "addServiceWorker": true
     }
   ],
+  "lint": {
+    "rules": [
+      "polymer-3"
+    ]
+  },
   "moduleResolution": "node",
   "npm": true
 }
