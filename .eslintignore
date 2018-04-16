@@ -8,3 +8,4 @@ import-ecc.js
 import-socketio.js
 main.min.js
 *.ecc.js
+*/*.html

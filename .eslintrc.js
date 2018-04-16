@@ -14,5 +14,8 @@ module.exports = {
         "Polymer": true,
         "Promise": true,
         "webpack": true,
-    }
+    },
+    "plugins": [
+        "html"
+    ],
 };
