@@ -93,16 +93,16 @@ class SwarmCity extends PolymerElement {
     let loaded;
     switch(page) {
       case 'view1':
-        loaded = import('./page-view1.js');
+        loaded = import('./pages/terminal/page-welcome.js');
         break;
       case 'view2':
-        loaded = import('./page-view2.js');
+        loaded = import('./pages/terminal/page-view2.js');
         break;
       case 'view3':
-        loaded = import('./page-view3.js');
+        loaded = import('./pages/terminal/page-view3.js');
         break;
       case 'view404':
-        loaded = import('./page-view404.js');
+        loaded = import('./pages/page-view404.js');
         break;
       default:
         loaded = Promise.reject();
