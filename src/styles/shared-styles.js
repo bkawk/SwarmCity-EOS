@@ -1,7 +1,6 @@
 import '../../node_modules/@polymer/polymer/polymer-element.js';
 const $_documentContainer = document.createElement('div');
 $_documentContainer.setAttribute('style', 'display: none;');
-
 $_documentContainer.innerHTML = `<dom-module id="shared-styles">
   <template>
     <style>
@@ -12,7 +11,9 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
       color: #757575;
       border-radius: 5px;
       background-color: #fff;
-      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 
+      0 1px 5px 0 rgba(0, 0, 0, 0.12), 
+      0 3px 1px -2px rgba(0, 0, 0, 0.2);
     }
 
     .circle {
@@ -107,7 +108,8 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
       background: -ms-linear-gradient(top,#FFFFFF,#f9f9f9);
       background: -moz-linear-gradient(top,#FFFFFF,#f9f9f9);
       background: -o-linear-gradient(top,#FFFFFF,#f9f9f9);
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF',endColorstr='#f9f9f9');
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF',
+      endColorstr='#f9f9f9');
     }
 
     .btn-critical:hover {
@@ -117,7 +119,8 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
       background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(249,250,250,1) 100%);
       background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(249,250,250,1) 100%);
       background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(249,250,250,1) 100%);
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f9fafa',GradientType=0 );
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', 
+      endColorstr='#f9fafa',GradientType=0 );
     }
 
     </style>
@@ -125,5 +128,3 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
 </dom-module>`;
 
 document.head.appendChild($_documentContainer);
-
-;

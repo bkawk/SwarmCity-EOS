@@ -1,9 +1,9 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-selector/iron-selector.js';
 import '../styles/shared-styles.js';
 import './component-sprite.js';
 
-class ComponentJumbo extends PolymerElement { static get template() { return html`
+class ComponentJumbo extends PolymerElement {static get template() {return html`
 
     <style include="shared-styles">
     :host {
@@ -42,9 +42,9 @@ class ComponentJumbo extends PolymerElement { static get template() { return htm
     <div class="intro">The EOS Marketplace Platform</div>
     <div class="strap">Communicate and transact value without third party interference.</div>
 
-`;} 
+`;}
 
-    static get is() { 
-        return 'component-jumbo'; 
+    static get is() {
+        return 'component-jumbo';
     }
 } customElements.define('component-jumbo', ComponentJumbo);

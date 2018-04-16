@@ -1,11 +1,10 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-selector/iron-selector.js';
 import '../styles/shared-styles.js';
 import './component-sprite.js';
+class ComponentHeader extends PolymerElement {static get template() {return html`
 
-class ComponentHeader extends PolymerElement { static get template() { return html`
-
-    <style include="shared-styles">
+<style include="shared-styles">
     :host {
         display: block;
         border-top: 10px solid rgba(0, 0, 0, 1);
@@ -73,7 +72,11 @@ class ComponentHeader extends PolymerElement { static get template() { return ht
     </style>
 
 <div class="navigation">
-    <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+    <iron-selector 
+        selected="[[page]]" 
+        attr-for-selected="name" 
+        class="drawer-list" 
+        role="navigation">
 
         <component-sprite
             icon="logo-invert">
@@ -90,17 +93,20 @@ class ComponentHeader extends PolymerElement { static get template() { return ht
     </iron-selector>
 </div>
 
-`;} 
+`;}
 
-static get is() { 
-    return 'component-header'; 
+static get is() {
+    return 'component-header';
 }
 
-_join(){
-    this.dispatchEvent(new CustomEvent('overlay', {bubbles: true, composed: true, detail: {action: 'join'}}));
+_join() {
+    this.dispatchEvent(new CustomEvent('overlay',
+        {bubbles: true, composed: true, detail: {action: 'join'}}
+    ));
 }
-_logIn(){
-    this.dispatchEvent(new CustomEvent('overlay', {bubbles: true, composed: true, detail: {action: 'login'}}));
+_logIn() {
+    this.dispatchEvent(new CustomEvent('overlay',
+        {bubbles: true, composed: true, detail: {action: 'login'}}
+    ));
 }
-
 } customElements.define('component-header', ComponentHeader);

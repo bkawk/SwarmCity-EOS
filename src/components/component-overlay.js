@@ -1,12 +1,10 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-selector/iron-selector.js';
 import '../styles/shared-styles.js';
 import './component-sprite.js';
-
 import './data/component-api.js';
 import './data/component-ecc.js';
-
-class ComponentOverlay extends PolymerElement { static get template() { return html`
+class ComponentOverlay extends PolymerElement {static get template() {return html`
 
     <style include="shared-styles">
     :host {
@@ -67,7 +65,12 @@ class ComponentOverlay extends PolymerElement { static get template() { return h
     
     <template is="dom-if" if="{{join}}">
         <div class="card" on-click="_clickCard">
-            <h2>Join Swarm City <small>SwarmCity is the place to transact and communicate without interference.</small></h2>
+            <h2>Join Swarm City 
+                <small>
+                    SwarmCity is the place to transact and 
+                    communicate without interference.
+                </small>
+            </h2>
             <input type="text" class$="{{error}}" placeholder="Username" id="username">
             <template is="dom-if" if="{{!available}}">
                 <button class="btn-critical" on-click="_checkUsername">Check Availability</button>
@@ -76,7 +79,9 @@ class ComponentOverlay extends PolymerElement { static get template() { return h
                 <input type="password" class="text" placeholder="Password" id="password">
                 <button class="btn-critical" on-click="_createAccount">Create Account</button>
             </template>
-            <div class="center">Already on Swarm City? <span on-click="_logIn">Log In</span></div>
+            <div class="center">Already on Swarm City? 
+                <span on-click="_logIn">Log In</span>
+            </div>
         </div>
     </template>
 
@@ -86,37 +91,39 @@ class ComponentOverlay extends PolymerElement { static get template() { return h
             <input type="text" class="text" name="username" placeholder="Username">
             <input type="text" class="text" name="password" placeholder="Password or Private Key">
             <button class="btn-critical">Login</button>
-            <div class="center">New to Swarm City? <span on-click="_join">Join Swarm City</span></div>
+            <div class="center">New to Swarm City? 
+                <span on-click="_join">Join Swarm City</span>
+            </div>
         </div>
     </template>
 
 </div>
 
-`;} 
+`;}
 
-static get is() { 
-    return 'component-overlay'; 
+static get is() {
+    return 'component-overlay';
 }
 
 ready() {
     super.ready();
-    window.addEventListener('overlay', (event) => {this._show(event.detail.action)});
+    window.addEventListener('overlay', (event) => {this._show(event.detail.action);});
 }
 
-_logIn(){
+_logIn() {
     this.join = false;
 }
 
-_join(){
+_join() {
     this.join = true;
 }
 
-_show(event){
+_show(event) {
     this.updateStyles({'--display-none-block': 'block'});
     setTimeout(()=>{
         this.updateStyles({'--opacity': 1});
     }, 1);
-    if(event === 'join'){
+    if (event === 'join') {
         this._join();
     } else {
         this._logIn();
@@ -124,42 +131,42 @@ _show(event){
 }
 
 
-_createAccount(){
+_createAccount() {
     this.$.ecc.makeKeyPair()
     .then((object) => {
-        console.log(object)
+
     })
     .catch((err) => {
-        console.log(Error(err));
-    })
+
+    });
 }
 
-_hide(){
+_hide() {
     this.updateStyles({'--opacity': 0});
     setTimeout(()=>{
         this.updateStyles({'--display-none-block': 'none'});
     }, 200);
 }
 
-_clickCard(event){
+_clickCard(event) {
     event.stopPropagation();
 }
 
-_checkUsername(){
-    var username = this.shadowRoot.querySelector("#username").value
+_checkUsername() {
+    const username = this.shadowRoot.querySelector('#username').value;
     this.$.api.usernameIsUnique(username)
     .then((object) => {
-        if(object.response === true){
+        if (object.response === true) {
             this.available = true;
-            this.error = 'text'
+            this.error = 'text';
         } else {
             this.available = false;
-            this.error = 'text error'
+            this.error = 'text error';
         }
     })
     .catch((err) => {
-        console.log(Error(err));
-    })
+
+    });
 }
 
 static get properties() {
@@ -169,7 +176,7 @@ static get properties() {
         },
         test: {
             type: String,
-            value: "test555",
+            value: 'test555',
         },
         available: {
             type: Boolean,
@@ -177,9 +184,8 @@ static get properties() {
         },
         error: {
             type: String,
-            value: 'text'
-        }
+            value: 'text',
+        },
     };
 }
-
 } customElements.define('component-overlay', ComponentOverlay);

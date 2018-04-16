@@ -1,5 +1,5 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-class PageView404 extends PolymerElement { static get template() { return html`
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+class PageView404 extends PolymerElement {static get template() {return html`
 
     <style>
       :host {
@@ -11,7 +11,7 @@ class PageView404 extends PolymerElement { static get template() { return html`
 
     Oops you hit a 404. <a href="[[rootPath]]">Head back to home.</a>
 
-`;} 
-  static get is() { return 'page-view404'; }
-  static get properties() {return {rootPath: String,};}}
+`;}
+  static get is() {return 'page-view404';}
+  static get properties() {return {rootPath: String};}}
   customElements.define('my-view404', PageView404);

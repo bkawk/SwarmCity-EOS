@@ -1,8 +1,7 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-selector/iron-selector.js';
-
-class ComponentSprite extends PolymerElement { 
-    static get template() { 
+class ComponentSprite extends PolymerElement {
+    static get template() {
         return html`
 
     <style>
@@ -33,9 +32,9 @@ class ComponentSprite extends PolymerElement {
     }
     </style>
     <div id="icon" class="sprite"></div>
-`;} 
+`;}
 
-static get is() { 
+static get is() {
     return 'component-sprite';
 }
 
@@ -53,5 +52,4 @@ ready() {
     super.ready();
     this.$.icon.classList.add(this.icon);
 }
-
 } customElements.define('component-sprite', ComponentSprite);

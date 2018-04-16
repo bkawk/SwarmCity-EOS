@@ -1,7 +1,7 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import '../../styles/shared-styles.js';
 import '../../components/component-jumbo.js';
-class PageWelcome extends PolymerElement { static get template() { return html`
+class PageWelcome extends PolymerElement {static get template() {return html`
 
     <style include="shared-styles">
       :host {
@@ -13,5 +13,5 @@ class PageWelcome extends PolymerElement { static get template() { return html`
 
     <component-jumbo><component-jumbo>
 
-`;} 
-  static get is() { return 'page-welcome'; }} customElements.define('page-welcome', PageWelcome);
+`;}
+  static get is() {return 'page-welcome';}} customElements.define('page-welcome', PageWelcome);

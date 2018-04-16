@@ -1,4 +1,4 @@
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import '@polymer/app-layout/app-header/app-header.js';
 import '@polymer/app-layout/app-header-layout/app-header-layout.js';
 import '@polymer/app-layout/app-scroll-effects/app-scroll-effects.js';
@@ -14,7 +14,7 @@ import './pages/page-view404.js';
 import './components/component-header.js';
 import './components/component-overlay.js';
 
-import { setPassiveTouchGestures, setRootPath } from '@polymer/polymer/lib/utils/settings.js';
+import {setPassiveTouchGestures, setRootPath} from '@polymer/polymer/lib/utils/settings.js';
 setPassiveTouchGestures(true);
 setRootPath(Polymer.rootPath);
 
@@ -44,7 +44,12 @@ class SwarmCity extends PolymerElement {
     </style>
 
     <app-location route="{{route}}" url-space-regex="^[[rootPath]]"></app-location>
-    <app-route route="{{route}}" pattern="[[rootPath]]:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
+    <app-route 
+      route="{{route}}" 
+      pattern="[[rootPath]]:page" 
+      data="{{routeData}}" 
+      tail="{{subroute}}">
+    </app-route>
     <component-overlay></component-overlay>
     <app-header-layout>  
 
@@ -52,7 +57,11 @@ class SwarmCity extends PolymerElement {
         <component-header></component-header>
       </app-header>
 
-      <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
+      <iron-pages 
+        selected="[[page]]" 
+        attr-for-selected="name" 
+        fallback-selection="view404" 
+        role="main">
         <page-welcome name="welcome"></page-welcome>
         <page-view2 name="view2"></page-view2>
         <page-view3 name="view3"></page-view3>
@@ -64,7 +73,9 @@ class SwarmCity extends PolymerElement {
 `;
   }
 
-  static get is() { return 'swarm-city'; }
+  static get is() {
+    return 'swarm-city';
+  }
 
   static get properties() {
     return {
@@ -74,7 +85,7 @@ class SwarmCity extends PolymerElement {
         observer: '_pageChanged',
       },
       routeData: Object,
-      subroute: Object
+      subroute: Object,
     };
   }
 
@@ -91,7 +102,7 @@ class SwarmCity extends PolymerElement {
 
   _pageChanged(page) {
     let loaded;
-    switch(page) {
+    switch (page) {
       case 'view1':
         loaded = import('./pages/terminal/page-welcome.js');
         break;
@@ -109,8 +120,10 @@ class SwarmCity extends PolymerElement {
     }
 
     loaded.then(
-      _ => {},
-      _ => { this._showPage404.bind(this) }
+      (_) => {},
+      (_) => {
+        this._showPage404.bind(this);
+      }
     );
   }
 
