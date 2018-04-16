@@ -8,7 +8,7 @@ target: 'web',
 entry: './webpack.js',
 output: {
     path: path.resolve(__dirname, './src/components/imports/'),
-    filename: '[name].min.js',
+    filename: 'import-swarmcity.js',
     library: '[name]',
     libraryTarget: 'var',
 },

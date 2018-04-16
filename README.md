@@ -24,6 +24,12 @@ First, install [Polymer CLI](https://github.com/Polymer/polymer-cli) using
 
 ### Setup
 
+Remove any old polymer cli if you have one installed
+
+    npm uninstall -g polymer-cli
+
+Make a clean install
+
     npm install -g polymer-cli@next
 
 Second, install [yarn](https://yarnpkg.com/en/docs/install) 
