@@ -129,6 +129,9 @@
     "vinyl": "1.2.0",
     "clone": "1.0.4",
     "clone-stats": "0.0.1",
-    "replace-ext": "0.0.1"
+    "replace-ext": "0.0.1",
+    "globals": "11.4.0",
+    "to-fast-properties": "2.0.0",
+    "slice-ansi": "1.0.0"
   }
 }
