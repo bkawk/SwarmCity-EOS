@@ -19,11 +19,14 @@
     "webpack-cli": "^2.0.14"
   },
   "scripts": {
+    "uninstall": "npm uninstall -g polymer-clit",
+    "cli": "npm install -g polymer-cli@next",
+    "install": "yarn install --flat",
+    "build": "webpack && polymer build",
     "lint": "npm run lint:javascript",
     "lint:javascript": "eslint . --ext js,html",
     "test": "polymer test",
-    "test:integration": "polymer build # test that psk builds without error with the CLI",
-    "webpack": "webpack"
+    "serve": "polymer serve --open --npm --module-resolution=node"
   },
   "version": "1.0.0",
   "author": "@bkawk",

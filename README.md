@@ -24,26 +24,40 @@ First, install [Polymer CLI](https://github.com/Polymer/polymer-cli) using
 
 ### Setup
 
-Remove any old polymer cli if you have one installed
-
-    npm uninstall -g polymer-cli
-
-Make a clean install
-
-    npm install -g polymer-cli@next
-
-Second, install [yarn](https://yarnpkg.com/en/docs/install) 
+install [yarn](https://yarnpkg.com/en/docs/install) 
 
     npm install yarn -g
 
+Remove any old polymer cli if you have one installed
+
+    yarn uninstall
+
+Make a clean cli install
+
+    yarn cli
+
 and then install dependancies with 
 
-    yarn install --flat
+    yarn install
 
-lastly serve the site
 
-    polymer serve --open --npm --module-resolution=node
+### Run
 
+Lint 
+
+    yarn lint
+
+Build
+
+    yarn build
+
+Test
+
+    yarn test
+
+Serve the site
+
+    yarn serve
 ### Contributions are very welcome
 
 1. Look through the open issues or make a new issue
