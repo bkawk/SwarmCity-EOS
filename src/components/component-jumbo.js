@@ -39,7 +39,7 @@ class ComponentJumbo extends PolymerElement {static get template() {return html`
 
     <div class="welcome-to">Welcome to</div>
     <div class="swarmcity-eos">SwarmCity<span>-EOS</span></div>
-    <div class="intro">The EOS Marketplace Platform</div>
+    <div class="intro">The EOS Platform for creating Human Service Marketplaces</div>
     <div class="strap">Communicate and transact value without third party interference.</div>
 
 `;}
