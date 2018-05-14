@@ -10,7 +10,7 @@ class ComponentSprite extends PolymerElement {
     }
 
     .sprite {
-        background-image: url(./../images/sprite@1x.png);
+        background-image: url(./images/sprite@1x.png);
         background-size: 200px 200px;
         background-repeat: no-repeat;
         display: block;
@@ -27,7 +27,7 @@ class ComponentSprite extends PolymerElement {
     only screen and (min--moz-device-pixel-ratio: 1.5),
     only screen and (min-resolution: 240dpi) {
         .sprite {
-            background-image: url(./../images/sprite@2x.png);
+            background-image: url(./images/sprite@2x.png);
         }
     }
     </style>
