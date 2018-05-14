@@ -1,1 +1,32 @@
-define(["../swarm-city.js"],function(a){"use strict";var b=babelHelpers.taggedTemplateLiteral(["\n\n    <style>\n      :host {\n        display: block;\n\n        padding: 10px 20px;\n      }\n    </style>\n\n    Oops you hit a 404. <a href=\"[[rootPath]]\">Head back to home.</a>\n\n"]),c=function(c){function d(){return babelHelpers.classCallCheck(this,d),babelHelpers.possibleConstructorReturn(this,(d.__proto__||Object.getPrototypeOf(d)).apply(this,arguments))}return babelHelpers.inherits(d,c),babelHelpers.createClass(d,null,[{key:"template",get:function get(){return(0,a.html)(b)}},{key:"is",get:function get(){return"page-view404"}},{key:"properties",get:function get(){return{rootPath:String}}}]),d}(a.PolymerElement);customElements.define("my-view404",c)});
+import { PolymerElement, html } from "../../node_modules/@polymer/polymer/polymer-element.js";
+
+class PageView404 extends PolymerElement {
+  static get template() {
+    return html`
+
+    <style>
+      :host {
+        display: block;
+
+        padding: 10px 20px;
+      }
+    </style>
+
+    Oops you hit a 404. <a href="[[rootPath]]">Head back to home.</a>
+
+`;
+  }
+
+  static get is() {
+    return 'page-view404';
+  }
+
+  static get properties() {
+    return {
+      rootPath: String
+    };
+  }
+
+}
+
+customElements.define('my-view404', PageView404);

@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["index.html","722dd644cdabfc3831770814ed9c45cb"],["manifest.json","c9be285f428e41c0f2b3425c7cffbe5b"],["src/pages/page-view404.js","eb3c999f683e72d8ce8103cdcd9c67a5"],["src/pages/terminal/page-view2.js","68e7c507301e36594e1607599ab4ea72"],["src/pages/terminal/page-view3.js","04ed445afe018e440a3b8346f11aaecd"],["src/pages/terminal/page-welcome.js","c0e847451f457ab48ef69b69756cd5e5"],["src/swarm-city.js","52f7603f4fdc434f5c9c70aa43d2783a"]];
+var precacheConfig = [["index.html","6e9525c4e7e96279e043eeb6e81a091d"],["manifest.json","c9be285f428e41c0f2b3425c7cffbe5b"],["src/components/component-header.js","0a1b0c33cab19041a3cdb9da3f9c2e72"],["src/components/component-jumbo.js","753ed8f3873bfedfead6b8e989f33a9a"],["src/components/component-overlay.js","a0c9c9e2713b8e25b63a579d5baf8830"],["src/components/component-sprite.js","de5c696d711c3165e9176383197e4746"],["src/components/data/component-api.js","a4488e55f772482ea499eaff1afb0d6c"],["src/components/data/component-ecc.js","270174f28a6c51ee4b0d6982160d5273"],["src/components/imports/import-ecc.js","dd4d3444d666d115e26f4a25659f69e1"],["src/pages/page-view404.js","1d3e0d768be72abba54f308c69abeefd"],["src/pages/terminal/page-view2.js","bd8708778594a9db69c0e74f7bf7d7a9"],["src/pages/terminal/page-view3.js","32837e5d1e57e85971c63dae69433a54"],["src/pages/terminal/page-welcome.js","935cadbafdc27ada37ce2a27e9a01cf5"],["src/styles/shared-styles.js","99b9588c4594f8d77352c37e6ecf35e0"],["src/swarm-city.js","4f2151d6a1572ddc3f4de8aa34b7eb05"]];
 var cacheName = 'sw-precache-v3--' + (self.registration ? self.registration.scope : '');
 
 

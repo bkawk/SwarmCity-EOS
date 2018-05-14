@@ -1,1 +1,33 @@
-define(["../../swarm-city.js"],function(a){"use strict";var b=babelHelpers.taggedTemplateLiteral(["\n\n    <style include=\"shared-styles\">\n      :host {\n        display: block;\n        padding: 10px;\n      }\n    </style>\n\n    <div class=\"card\">\n      <div class=\"circle\">2</div>\n      <h1>View Two</h1>\n      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>\n      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.\n        Detracto suavitate repudiandae no eum. \n        Id adhuc minim soluta nam.Id nam odio natum malorum, \n        tibique copiosae expetenda mel ea.</p>\n    </div>\n"]),c=function(c){function d(){return babelHelpers.classCallCheck(this,d),babelHelpers.possibleConstructorReturn(this,(d.__proto__||Object.getPrototypeOf(d)).apply(this,arguments))}return babelHelpers.inherits(d,c),babelHelpers.createClass(d,null,[{key:"template",get:function get(){return(0,a.html)(b)}},{key:"is",get:function get(){return"page-view2"}}]),d}(a.PolymerElement);customElements.define("page-view2",c)});
+import { PolymerElement, html } from "../../../node_modules/@polymer/polymer/polymer-element.js";
+import '../../styles/shared-styles.js';
+
+class PageView2 extends PolymerElement {
+  static get template() {
+    return html`
+
+    <style include="shared-styles">
+      :host {
+        display: block;
+        padding: 10px;
+      }
+    </style>
+
+    <div class="card">
+      <div class="circle">2</div>
+      <h1>View Two</h1>
+      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
+      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.
+        Detracto suavitate repudiandae no eum. 
+        Id adhuc minim soluta nam.Id nam odio natum malorum, 
+        tibique copiosae expetenda mel ea.</p>
+    </div>
+`;
+  }
+
+  static get is() {
+    return 'page-view2';
+  }
+
+}
+
+customElements.define('page-view2', PageView2);
