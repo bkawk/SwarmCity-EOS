@@ -22,7 +22,7 @@
   "scripts": {
     "uninstall": "npm uninstall -g polymer-clit",
     "cli": "npm install -g polymer-cli@next",
-    "build": "npm run deldocs && polymer build --base-path /psk3-test/ --add-service-worker && npm run move && npm run delbuild",
+    "build": "npm run deldocs && polymer build --base-path /SwarmCity-EOS/ --add-service-worker && npm run move && npm run delbuild",
     "start": "polymer serve",
     "lint": "polymer lint",
     "test": "polymer test",
