@@ -162,8 +162,10 @@ class ComponentOverlay extends PolymerElement {
 
   _checkUsername() {
     const username = this.shadowRoot.querySelector('#username').value;
-    this.$.api.usernameIsUnique(username).then(object => {
-      if (object.response === true) {
+    this.$.api.usernameIsAvailable(username).then(object => {
+      console.log(object);
+
+      if (object === true) {
         this.available = true;
         this.error = 'text';
       } else {

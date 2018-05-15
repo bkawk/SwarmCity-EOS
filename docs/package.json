@@ -37,6 +37,7 @@
     "@babel/plugin-transform-classes": "^7.0.0-beta.46",
     "@polymer/app-layout": "^3.0.0-pre.15",
     "@polymer/app-route": "^3.0.0-pre.15",
+    "@polymer/iron-ajax": "^3.0.0-pre.19",
     "@polymer/iron-flex-layout": "^3.0.0-pre.15",
     "@polymer/iron-iconset-svg": "^3.0.0-pre.15",
     "@polymer/iron-media-query": "^3.0.0-pre.15",

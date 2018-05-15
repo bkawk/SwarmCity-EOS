@@ -1,5 +1,18 @@
-import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import '@polymer/iron-ajax/iron-ajax.js';
+
 class ComponentApi extends PolymerElement {
+    static get template() {
+        return html`
+        <iron-ajax
+            id="checkUsername"
+            url="http://104.236.39.130/users/{{username}}"
+            handle-as="json"
+            debounce-duration="300">
+        </iron-ajax>
+        `;
+    }
+
 static get is() {
     return 'component-api';
 }
@@ -11,6 +24,9 @@ static get properties() {
             reflectToAttribute: true,
             value: false,
         },
+        username: {
+            type: String,
+        }
     };
 }
 
@@ -21,10 +37,24 @@ static get properties() {
     @property {string} username - The username to check
 
 */
-usernameIsUnique(username) {
+usernameIsAvailable(username) {
     return new Promise((resolve, reject) => {
-        // TODO: Link this to the API
-        resolve({response: true, username: username});
+        this.username = username;
+        let apiCall = this.$.checkUsername;
+        apiCall.addEventListener('response', (e) => {
+            if (e.detail.response.handle === username){
+                console.log('Not Available')
+                resolve(false);
+            }
+        })
+        apiCall.addEventListener('error', (e) => {
+            let response = e.detail.request.__data.response
+            if (response.code === 404){
+                console.log('Available')
+                resolve(true);
+            }
+        })
+        apiCall.generateRequest();
     });
 }
 } customElements.define('component-api', ComponentApi);

@@ -154,9 +154,10 @@ _clickCard(event) {
 
 _checkUsername() {
     const username = this.shadowRoot.querySelector('#username').value;
-    this.$.api.usernameIsUnique(username)
+    this.$.api.usernameIsAvailable(username)
     .then((object) => {
-        if (object.response === true) {
+        console.log(object)
+        if (object === true) {
             this.available = true;
             this.error = 'text';
         } else {
