@@ -6,7 +6,7 @@ class ComponentApi extends PolymerElement {
         return html`
         <iron-ajax
             id="checkUsername"
-            url="http://104.236.39.130/users/{{username}}"
+            url="https://apidev.dac.city/users/{{username}}"
             handle-as="json"
             debounce-duration="300">
         </iron-ajax>
