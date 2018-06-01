@@ -76,11 +76,11 @@ class ComponentOverlay extends PolymerElement {
             </h2>
             <input type="text" class$="{{error}}" placeholder="Username" id="username">
             <template is="dom-if" if="{{!available}}">
-                <button class="btn-critical" on-click="_checkUsername">Check Availability</button>
+                <button class="btn-critical" on-click="_checkUsername">{{availability}}</button>
             </template>
             <template is="dom-if" if="{{available}}">
                 <input type="password" class="text" placeholder="Password" id="password">
-                <button class="btn-critical" on-click="_createAccount">Create Account</button>
+                <button class="btn-critical" on-click="_createAccount">{{createAccount}}</button>
             </template>
             <div class="center">Already on Swarm City? 
                 <span on-click="_logIn">Log In</span>
@@ -95,7 +95,7 @@ class ComponentOverlay extends PolymerElement {
             <input type="text" class="text" name="password" placeholder="Password or Private Key">
             <button class="btn-critical">Login</button>
             <div class="center">New to Swarm City? 
-                <span on-click="_join">Join Swarm City</span>
+                <span on-click="_join">{{joinSwarmCity}}</span>
             </div>
         </div>
     </template>
@@ -122,6 +122,7 @@ class ComponentOverlay extends PolymerElement {
 
   _join() {
     this.join = true;
+    this.joinSwarmCity = 'Registering Account';
   }
 
   _show(event) {
@@ -142,7 +143,15 @@ class ComponentOverlay extends PolymerElement {
   }
 
   _createAccount() {
-    this.$.ecc.makeKeyPair().then(object => {}).catch(err => {});
+    this.$.ecc.makeKeyPair().then(keypair => {
+      return this.$.ecc.sign(keypair.publicKey, keypair.privateKey, keypair.publicKey);
+    }).then(response => {
+      this.$.api.login(response.publicKey, response.signature);
+    }).then(response => {
+      console.log(response);
+    }).catch(err => {
+      console.log(Error(err));
+    });
   }
 
   _hide() {
@@ -161,9 +170,10 @@ class ComponentOverlay extends PolymerElement {
   }
 
   _checkUsername() {
+    this.availability = 'Checking Now...';
     const username = this.shadowRoot.querySelector('#username').value;
     this.$.api.usernameIsAvailable(username).then(object => {
-      console.log(object);
+      this.availability = 'Check Availability';
 
       if (object === true) {
         this.available = true;
@@ -191,6 +201,18 @@ class ComponentOverlay extends PolymerElement {
       error: {
         type: String,
         value: 'text'
+      },
+      availability: {
+        type: String,
+        value: 'Check Availability'
+      },
+      joinSwarmCity: {
+        type: String,
+        value: 'Join Swarm City'
+      },
+      createAccount: {
+        type: Text,
+        value: 'Create Account'
       }
     };
   }

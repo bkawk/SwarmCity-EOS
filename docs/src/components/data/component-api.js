@@ -10,6 +10,16 @@ class ComponentApi extends PolymerElement {
             handle-as="json"
             debounce-duration="300">
         </iron-ajax>
+        <iron-ajax
+            id="login"
+            method="post"
+            url="https://apidev.dac.city/auth/login"
+            handle-as="json"
+            body = "{{login}}"
+            handle-as="json"
+            content-type="application/json"
+            debounce-duration="300">
+        </iron-ajax>
         `;
   }
 
@@ -26,15 +36,12 @@ class ComponentApi extends PolymerElement {
       },
       username: {
         type: String
+      },
+      login: {
+        type: Object
       }
     };
   }
-  /**
-    @throws {Error|TypeError} - "Username has been used"
-    @return {boolean}
-    @property {string} username - The username to check
-  */
-
 
   usernameIsAvailable(username) {
     return new Promise((resolve, reject) => {
@@ -42,7 +49,6 @@ class ComponentApi extends PolymerElement {
       let apiCall = this.$.checkUsername;
       apiCall.addEventListener('response', e => {
         if (e.detail.response.handle === username) {
-          console.log('Not Available');
           resolve(false);
         }
       });
@@ -50,11 +56,29 @@ class ComponentApi extends PolymerElement {
         let response = e.detail.request.__data.response;
 
         if (response.code === 404) {
-          console.log('Available');
           resolve(true);
         }
       });
       apiCall.generateRequest();
+    });
+  }
+
+  login(publicKey, signature) {
+    return new Promise((resolve, reject) => {
+      this.login = {};
+      this.login.publicKey = publicKey;
+      this.login.signature = signature;
+      let apiCall = this.$.login;
+      apiCall.addEventListener('response', e => {
+        resolve(e);
+      });
+      apiCall.addEventListener('error', e => {
+        resolve(e);
+      });
+
+      if (publicKey && signature) {
+        apiCall.generateRequest();
+      }
     });
   }
 

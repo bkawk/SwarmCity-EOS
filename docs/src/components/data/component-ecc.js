@@ -39,22 +39,16 @@ class ComponentEcc extends PolymerElement {
     });
   }
 
-  sign(message, privateKey) {
+  sign(message, privateKey, publicKey) {
     return new Promise((resolve, reject) => {
       const ecc = eosjs_ecc;
 
       if (message && privateKey && ecc.isValidPrivate(privateKey)) {
-        ecc.sign(message, privateKey).then(signature => {
-          if (!signature) {
-            reject(Error('No hex signaure returned'));
-          } else {
-            resolve({
-              status: 200,
-              signature: signature
-            });
-          }
-        }).catch(error => {
-          reject(Error(error));
+        const signature = ecc.sign(message, privateKey);
+        resolve({
+          signature,
+          privateKey,
+          publicKey
         });
       } else {
         reject(Error('Missing or incorect arguments'));
