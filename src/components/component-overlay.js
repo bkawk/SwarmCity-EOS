@@ -71,13 +71,13 @@ class ComponentOverlay extends PolymerElement {static get template() {return htm
                     communicate without interference.
                 </small>
             </h2>
-            <input type="text" class$="{{error}}" placeholder="Username" id="username">
+            <input type="text" class$="{{error}}" placeholder="Username" id="username" value="{{username}}">
             <template is="dom-if" if="{{!available}}">
                 <button class="btn-critical" on-click="_checkUsername">{{availability}}</button>
             </template>
             <template is="dom-if" if="{{available}}">
                 <input type="password" class="text" placeholder="Password" id="password">
-                <button class="btn-critical" on-click="_createAccount">{{createAccount}}</button>
+                <button class="btn-critical" on-click="_createAccount">{{registerAccount}}</button>
             </template>
             <div class="center">Already on Swarm City? 
                 <span on-click="_logIn">Log In</span>
@@ -112,6 +112,19 @@ ready() {
 
 _logIn() {
     this.join = false;
+        this.$.ecc.makeKeyPair()
+    .then((keypair) => {
+        return this.$.ecc.sign(keypair.publicKey, keypair.privateKey, keypair.publicKey);
+    })
+    .then((response) => {
+        this.$.api.login(response.publicKey, response.signature);
+    })
+    .then((response) => {
+        console.log(response)
+    })
+    .catch((err) => {
+        console.log(Error(err))
+    });
 }
 
 _join() {
@@ -133,18 +146,38 @@ _show(event) {
 
 
 _createAccount() {
+    const username = this.shadowRoot.querySelector('#username').value;
+    let keyring;
     this.$.ecc.makeKeyPair()
     .then((keypair) => {
+        keypair.username = this.shadowRoot.querySelector('#username').value;
+        keypair.password = this.shadowRoot.querySelector('#password').value;
+        // TODO Encrypt with password before saving to local storage
+        // TODO push into an array to allow multiple identities to be saved and detched
+        localStorage.setItem('keypair', JSON.stringify(keypair));
+        keyring = keypair;
         return this.$.ecc.sign(keypair.publicKey, keypair.privateKey, keypair.publicKey);
     })
-    .then((response) => {
-        this.$.api.login(response.publicKey, response.signature);
+    .then((userInfo) => {
+        return this.$.api.register(userInfo.publicKey, username);
     })
     .then((response) => {
-        console.log(response)
+        const data = response.detail.__data;
+        if (!data.errored) {
+            return this.$.ecc.sign(keyring.publicKey, keyring.privateKey, keyring.publicKey)
+        } else {
+            console.log('login failed');
+        }
+    })
+    .then((response) => {
+        return this.$.api.login(response.publicKey, response.signature);
+    })
+    .then((response) => {
+        console.log(response);
     })
     .catch((err) => {
-        console.log(Error(err))
+        console.log('Error');
+        console.log(Error(err));
     });
 }
 
@@ -203,7 +236,7 @@ static get properties() {
             type: String,
             value: 'Join Swarm City',
         },
-        createAccount: {
+        registerAccount: {
             type: Text,
             value: 'Create Account',
         },

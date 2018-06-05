@@ -20,6 +20,16 @@ class ComponentApi extends PolymerElement {
             content-type="application/json"
             debounce-duration="300">
         </iron-ajax>
+        <iron-ajax
+            id="register"
+            method="post"
+            url="https://apidev.dac.city/auth/register"
+            handle-as="json"
+            body = "{{register}}"
+            handle-as="json"
+            content-type="application/json"
+            debounce-duration="300">
+        </iron-ajax>
         `;
     }
 
@@ -38,6 +48,9 @@ static get properties() {
             type: String,
         },
         login: {
+            type: Object,
+        },
+        register: {
             type: Object,
         },
     };
@@ -74,6 +87,23 @@ login(publicKey, signature) {
             resolve(e);
         });
         if (publicKey && signature) {
+            apiCall.generateRequest();
+        }
+    });
+}
+register(publicKey, username) {
+    return new Promise((resolve, reject) => {
+        this.register = {};
+        this.register.publicKey = publicKey;
+        this.register.handle = username;
+        let apiCall = this.$.register;
+        apiCall.addEventListener('response', (e) => {
+            resolve(e);
+        });
+        apiCall.addEventListener('error', (e) => {
+            resolve(e);
+        });
+        if (publicKey && username) {
             apiCall.generateRequest();
         }
     });
